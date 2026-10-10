@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TypeFlow | Typing Speed Tester</title>
+    
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="/" class="logo">Type<span>Flow.</span></a>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#test">Typing Test</a>
+            <a href="#features">Features</a>
+        </nav>
+
+        <button id="themeButton" class="theme-button">
+            ☼ Theme
+        </button>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <p class="eyebrow">YOUR JOURNEY TO BETTER TYPING</p>
+
+            <h1>Type faster.<br>
+                <span>Think sharper.</span>
+            </h1>
+
+            <p class="hero-text">
+                Improve your typing speed, build accuracy,
+                and challenge yourself one keystroke at a time.
+            </p>
+
+            <a href="#test" class="start-button">
+                Start Typing Test →
+            </a>
+
+            <div class="highlights">
+                <div>
+                    <strong>01</strong>
+                    <span>Choose duration</span>
+                </div>
+                <div>
+                    <strong>02</strong>
+                    <span>Test your speed</span>
+                </div>
+                <div>
+                    <strong>03</strong>
+                    <span>Track your score</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="test-section" id="test">
+            <div class="section-title">
+                <p class="eyebrow">THE PRACTICE ZONE</p>
+                <h2>Find your flow.</h2>
+                <p>Accuracy first. Speed follows.</p>
+            </div>
+
+            <div class="test-card">
+                <div class="toolbar">
+                    <div class="durations">
+                        <button class="mode active" data-time="30">30 sec</button>
+                        <button class="mode" data-time="60">60 sec</button>
+                        <button class="mode" data-time="120">120 sec</button>
+                    </div>
+
+                    <button id="resetButton" class="reset-button">
+                        ↻ Restart
+                    </button>
+                </div>
+
+                <div class="metrics">
+                    <div>
+                        <span>WORDS / MIN</span>
+                        <strong id="wpm">0</strong>
+                    </div>
+                    <div>
+                        <span>ACCURACY</span>
+                        <strong id="accuracy">100%</strong>
+                    </div>
+                    <div>
+                        <span>TIME LEFT</span>
+                        <strong id="time">30s</strong>
+                    </div>
+                    <div>
+                        <span>CHARACTER ERRORS</span>
+                        <strong id="errors">0</strong>
+                    </div>
+                </div>
+
+                <div id="passage" class="passage"></div>
+
+                <label for="typingInput">START TYPING HERE</label>
+
+                <textarea
+                    id="typingInput"
+                    rows="4"
+                    placeholder="Click here and start typing..."
+                    spellcheck="false"
+                    autocomplete="off"
+                    autocorrect="off"
+                    autocapitalize="off"></textarea>
+
+                <div class="test-footer">
+                    <span id="status">Ready when you are.</span>
+                    <span>Keep calm and keep typing.</span>
+                </div>
+
+                <div id="result" class="result-panel" hidden>
+                    <h3>Test completed!</h3>
+                    <p>Your performance summary</p>
+
+                    <div class="final-stats">
+                        <div>
+                            <strong id="finalWpm">0</strong>
+                            <span>WPM</span>
+                        </div>
+                        <div>
+                            <strong id="finalAccuracy">100%</strong>
+                            <span>Accuracy</span>
+                        </div>
+                        <div>
+                            <strong id="finalCorrect">0</strong>
+                            <span>Correct characters</span>
+                        </div>
+                    </div>
+
+                    <!-- Word error summary -->
+                    <div class="word-summary">
+                        <div class="word-stat">
+                            <span>Wrong Words</span>
+                            <strong id="wrongWordsCount">0</strong>
+                        </div>
+
+                        <div class="word-stat">
+                            <span>Extra Words</span>
+                            <strong id="extraWordsCount">0</strong>
+                        </div>
+
+                        <div class="word-stat">
+                            <span>Missed Words</span>
+                            <strong id="missedWordsCount">0</strong>
+                        </div>
+                    </div>
+
+                    <!-- Detailed word review -->
+                    <div class="review-section">
+                        <h3>Word-by-Word Review</h3>
+                        <p class="review-description">
+                            Check your mistakes and learn the correct words.
+                        </p>
+
+                        <div id="wordReview" class="word-review"></div>
+                    </div>
+
+                    <button id="againButton" class="start-button">
+                        Try Again →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="features" id="features">
+            <p class="eyebrow">WHY TYPEFLOW?</p>
+            <h2>Every keystroke counts.</h2>
+
+            <div class="feature-grid">
+                <article class="feature-card">
+                    <div class="feature-icon">⌁</div>
+                    <h3>Measure your speed</h3>
+                    <p>
+                        Discover your typing speed with
+                        real-time WPM statistics.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">◎</div>
+                    <h3>Improve accuracy</h3>
+                    <p>
+                        Identify typing mistakes and focus
+                        on precision.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">↗</div>
+                    <h3>Beat your record</h3>
+                    <p>
+                        Practice consistently and work
+                        toward your personal best.
+                    </p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <a href="/" class="logo">Type<span>Flow.</span></a>
+        <p>Practice with purpose. Improve every day.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
